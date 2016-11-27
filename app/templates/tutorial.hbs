@@ -1,0 +1,165 @@
+<body>
+     <div class="jumbotron text-center">
+    <h1>EmberJS Tutorial</h1>
+    
+    <h2>Creating a webpage in EmberJS is easy!</h2>
+   
+    <p>
+        To create a webpage simply run the following command:
+        <br><br>
+       <code>ember generate template [page name here]</code>
+        <br><br>
+        This command will create a template for your webpage.
+        To edit your webpage, you must edit it's accompanying template.
+        The templates can be found in app/templates.
+        EmberJS uses the Handlebars templating language to allow users to have their webpage updated
+        as soon as the underlying data changes.
+        In the handlebars template you can insert raw text, handlebars syntax or html to design you page contents.
+    
+    <br>
+    <h2>Now create a route!</h2>
+    A route is used to direct the user to an addressable page.
+     <br><br>
+     <code>ember g route [page name here]</code>
+     <br><br>
+      Now with this creates a new route and an associated handlebar script! With the handlebar script we can
+    create new amazing web pages using a combination of HTML and Handlebars.js syntax along with the routes
+    we just defined!
+        </p>
+    
+    <h2>Working with Bootrap is super easy!</h2>
+    <p>
+        To add the Bootstrap CSS framework to your project you can either use ember or bower to do it.
+        To add Bootstrap using ember enter the following command: <code>ember install ember-bootstrap</code>
+        To add Bootstrap using bower enter the following command: <code>bower install bootstrap</code>
+    </p>
+
+        
+    <h2>Now let's build a real working application</h2>
+    <p>
+        Now that you have learnt the very basic of ember, let's build a simple app.
+        Start by creating a new ember app. To make a new ember app, you need to run the following command:
+        <code>ember new chat</code>
+        <br><br>
+        Next we need to generate an application template, an application template is the template that contains
+        HTML or text that you want repeated across all web pages. This can be used to add navigation bar, a copyright text
+        or anything else you might need.To do this, run the following command:
+         <code>ember generate template application</code>
+        <br><br>
+        We will be using a POST form to keep track of our user so we must add the following code to our router.js file:
+        <code>
+            this.route('chat', { path: '/chat/:user_name' } );
+        </code>
+        <br><br>
+        <h4>The Index page</h4>
+        
+        Now let's generate a route for our index page: <code>ember generate route index</code>
+        
+        Let's edit our index template and add a textbox where we can allow the user to set the name that they want
+        for the chat. The code is shown in the following image:
+        <br><br>
+        <div><img src="assets/code-login.png" alt="Code"></div> 
+        <br>
+        As can be seen in the image, we make liberal use of handlebars. The handlebars code with the form control allows us to take in user input
+        and we store that variable in the value. The handlebars code <code>#if name</code> determines if name is non-empty, then it displays the 
+        button to enter the chat room. If the user enters a name, it is dynamically displayed in our h2 tag.
+        <br>
+        The code <code>#link-to 'room'</code> links our index page to the room page with the button. 
+        But wait, we did'nt generate the route or template for the chat room so let's do that now. The command for that is
+        as follows: <code>ember generate route room</code>
+        
+        <h4>The Chat room page</h4>
+        
+        Now let's edit our room template. The code is as follows:
+        <br><br>
+        <div><img src="assets/code-room.png" alt="Code"></div> 
+        <br>
+        
+        As we can see this template is significantly more complicated than our index, and uses a lot more 
+        handlebar syntax. As you can see we in the handelbar code <code>#each model as |message|</code>,
+        we are iterating over messages. We display these messages in labels and allow the user to sumbit new messages using a
+        message bar which will take in the user's message and store it in the variable <code>textMessageFromInput</code>
+        You might now be wondering what the <code>message</code> or
+        <code>model</code> are. 
+        <br>
+        Recall that Ember uses the Model-View-Controller architecture approach. The <code>model</code>
+        and <code>message</code> are our model or our data. Now you might be wondering where this data is coming from
+        and where we are storing it. We are using a wonderful database service offered by Google known as firebase.
+        
+        <h4>How to use firebase?</h4>
+        <br>
+        First, we must sign up for the service with a gmail address.
+        The website is located at here: <a href="www.firebase.google.com">Firebase</a>.
+        Don't rush to get out your credit card because it has a free tier.
+        Once we've signed up, we must go to our console and create a new project.
+        You can name it whatever you like, we will be using this as our data store.
+        <br>
+        To use firebase in ember, we have to install a module called emberfire.
+        To do this, run the following command: <code>ember install emberfire</code>
+        <br>
+        This command will prompt us to add our firebase information to our environment.js file.
+        This file can be found in app/config. To get the requiste firebase information,
+        we must choose our project in the firebase console and choose add to web app, this will
+        generate some information that we must add to our environment.js file.
+        Please note that the firebase data must be in this format: 
+        <br> <br>
+        <code>
+            firebase: {
+               apiKey: 'xyz',
+               authDomain: 'YOUR-FIREBASE-APP.firebaseapp.com',
+               databaseURL: 'https://YOUR-FIREBASE-APP.firebaseio.com',
+               storageBucket: 'YOUR-FIREBASE-APP.appspot.com',
+                messagingSenderId: '1234'
+                },
+            
+        </code>
+      
+        <br><br>
+        
+        <h4>Models and Functions</h4>
+        
+        Now that we have setup firebase as our database, we must create a data model for it to store.
+        For the sake of simplicity, let's keep our model as simple as possible by only having two components,
+        a user name and their message. To create this model, run the following command:
+        <code>ember generate model message user:string text:string</code>.
+        <br>
+        This will create a model with a component user of type string which will store our username
+        and a component text also of type string which will store our message.
+        <br>       
+        Now that we understand how to store data in firebase,
+        and how models in Ember are created, let's see how this data is actually stored.
+        For this we need to edit our routes/room.js file. The code is as follows:
+        
+        <br><br>
+        <div><img src="assets/code-room-actions.png" alt="Code"></div> 
+        <br>
+        
+       As can be seen from this image, we are creating a javascript function called createMessage.
+       In this function, we are creating a variable called newRecord which will contain the value we get from 
+       the message bar at the bottom of the page. Since this page is submitted using the POST method, we get the username from the URL.
+       The code <code>newRecord.save();</code> saves our new message to our firebase database.
+       <br>
+        
+        You might now be thinking that it's all fine and dandy to save our new messages but how do we display them?
+        
+        That is what the following code accomplishes. This code must be added before our actions in our room.js file.
+        
+        <br><br>
+        <div><img src="assets/code-room-load-messages.png" alt="Code"></div> 
+        <br>
+        
+        This piece of code searches our firebase database for any saved messages and returns them.
+        This function returns a variable model that is an array of messages, these are the messages that we iterate
+        over in our room.hbs template.
+        
+        <h2>Conclusion!</h2>
+        If you've made it this far, Congratulations on completing the tutorial and making your first
+        MVC web app in EmberJS! <img src="assets/smiley.png" alt="Smile Emoticon">
+        
+                
+    </p>
+   
+   
+    </div>
+   
+</body>

@@ -7,6 +7,13 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('about');
+  this.route('install');
+  this.route('tutorial');
+  this.route('chat');
+  this.route('room');
+  this.route('room', { path: '/room/:user_name' } );
+  this.route('conclusion');
 });
 
 export default Router;

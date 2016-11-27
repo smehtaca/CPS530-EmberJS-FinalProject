@@ -1,0 +1,25 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+     <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      {{#link-to 'index' class="navbar-brand"}}CPS 530 EmberJS{{/link-to}}
+    </div>
+    
+      <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav">
+            {{#link-to 'index' tagName="li"}}<a href="">Home</a>{{/link-to}}
+            {{#link-to 'install' tagName="li"}}<a href="">Install</a>{{/link-to}}
+            {{#link-to 'chat' tagName="li"}}<a href="">Chat App</a>{{/link-to}}
+            {{#link-to 'tutorial' tagName="li"}}<a href="">Tutorial</a>{{/link-to}}
+            {{#link-to 'conclusion' tagName="li"}}<a href="">Conclusion</a>{{/link-to}}
+            {{#link-to 'about' tagName="li"}}<a href="">About</a>{{/link-to}}
+      </ul>
+    </div><!-- /.navbar-collapse -->
+    </div>
+</nav>
