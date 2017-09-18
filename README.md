@@ -1,7 +1,7 @@
-# Cps530
+# EmberChat
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This is a web app built in EmberJS to teach EmberJS basics and show cases a simple chat app that is built in the tutorial.
+
 
 ## Prerequisites
 
@@ -16,7 +16,7 @@ You will need the following things properly installed on your computer.
 ## Installation
 
 * `git clone <repository-url>` this repository
-* `cd cps530`
+* `cd EmberChat`
 * `npm install`
 * `bower install`
 
@@ -24,10 +24,6 @@ You will need the following things properly installed on your computer.
 
 * `ember serve`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
 
 ### Running Tests
 
@@ -41,9 +37,9 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+* Use firebase cli to push your build to firebase.
 
-## Further Reading / Useful Links
+## Useful Links
 
 * [ember.js](http://emberjs.com/)
 * [ember-cli](http://ember-cli.com/)
